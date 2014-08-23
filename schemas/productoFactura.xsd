@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<xs:schema targetNamespace="http://www.synergyj.com/cursos/webservices/prodfactura"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+	elementFormDefault="unqualified">
+	
+	<!-- XMLBProducto para ser incluido en una orden -->
+	<xs:complexType name="XMLBProducto">
+		<xs:sequence>
+			<xs:element name="claveProducto" type="xs:string" />
+			<xs:element name="cantidad">
+				<xs:simpleType>
+					<xs:restriction base="xs:int">
+						<xs:minInclusive value="1" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="precioUnitario"  type="xs:double"/>
+			<xs:element name="iva"  type="xs:double"/>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

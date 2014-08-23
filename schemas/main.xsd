@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="windows-1252"?>
+<xs:schema targetNamespace="http://www.synergyj.com/cursos/webservices/container"
+	xmlns="http://www.synergyj.com/cursos/webservices/container"
+	xmlns:ordenes="http://www.synergyj.com/cursos/webservices/ordenes"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="unqualified"
+	attributeFormDefault="unqualified">
+
+	<xs:import
+		namespace="http://www.synergyj.com/cursos/webservices/ordenes"
+		schemaLocation="ordenCompra.xsd" />
+
+	<!-- XMLBFactura -->
+	<xs:element name="XMLBFactura" type="ordenes:XMLBFactura" />
+
+</xs:schema>

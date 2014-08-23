@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<xs:schema targetNamespace="http://www.synergyj.com/cursos/webservices/ordenes"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+	xmlns:prodorden="http://www.synergyj.com/cursos/webservices/prodorden"
+	xmlns:prodfactura="http://www.synergyj.com/cursos/webservices/prodfactura"
+	xmlns="http://www.synergyj.com/cursos/webservices/ordenes"
+	elementFormDefault="unqualified">
+
+	<!-- import para productos a incluir en una orden -->
+	<xs:import namespace="http://www.synergyj.com/cursos/webservices/prodorden"
+		schemaLocation="productoOrden.xsd" />
+
+
+	<!-- import para productos a incluir en una factura -->
+	<xs:import namespace="http://www.synergyj.com/cursos/webservices/prodfactura"
+		schemaLocation="productoFactura.xsd" />
+
+
+	<!-- XMLBFactura -->
+	<xs:complexType name="XMLBFactura">
+		<xs:sequence>
+			<xs:element name="orden" type="XMLBOrdenCompra" />
+			<xs:element name="detalleFactura" type="XMLBListaProdFactura" />
+			<xs:element name="total">
+				<xs:simpleType>
+					<xs:restriction base="xs:decimal">
+						<xs:fractionDigits value="2" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="iva" type="xs:double" />
+		</xs:sequence>
+	</xs:complexType>
+
+
+	<!-- XMLBListaProdFactura -->
+	<xs:complexType name="XMLBListaProdFactura">
+		<xs:sequence>
+			<xs:element name="producto" type="prodfactura:XMLBProducto"
+				minOccurs="1" maxOccurs="unbounded" />
+		</xs:sequence>
+	</xs:complexType>
+
+
+	<!-- XMLBOrdenCompra -->
+	<xs:complexType name="XMLBOrdenCompra">
+		<xs:sequence>
+			<xs:element name="fechaOrden" type="xs:dateTime" />
+			<xs:element name="sucursal" type="xs:string" minOccurs="0" />
+			<xs:element name="numeroOrden">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:minLength value="13" />
+						<xs:maxLength value="13" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="cliente" type="XMLBCliente" />
+			<xs:element name="producto" type="prodorden:XMLBProducto" minOccurs="1" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<!-- XMLBCliente -->
+	<xs:complexType name="XMLBCliente">
+		<xs:sequence>
+			<xs:element name="nombre" type="xs:string" />
+			<xs:element name="apellidoPaterno" type="xs:string" />
+			<xs:element name="apellidoMaterno" type="xs:string"
+				minOccurs="0" />
+			<xs:element name="sexo">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:length value="1" />
+						<xs:enumeration value="M" />
+						<xs:enumeration value="H" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

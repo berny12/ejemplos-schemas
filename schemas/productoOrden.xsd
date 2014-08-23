@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<xs:schema targetNamespace="http://www.synergyj.com/cursos/webservices/prodorden"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+	elementFormDefault="unqualified">
+	
+	<!-- XMLBProducto  para ser incluido en una orden de compra-->
+	<xs:complexType name="XMLBProducto">
+		<xs:sequence>
+			<xs:element name="numeroProducto" type="xs:int" />
+			<xs:element name="nombreProducto"  type="xs:string"/>
+			<xs:element name="descripcion"  type="xs:string" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>
